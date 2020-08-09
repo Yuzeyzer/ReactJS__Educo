@@ -1,32 +1,52 @@
 import React from 'react';
 
 function Home() {
-  const toDos = [
+  const valutes = [
     { id: 1, title: 'First valute', completed: false },
     { id: 2, title: 'Second valute', completed: true },
   ];
-  const [state, setState] = React.useState(toDos);
+  const [valute, setValute] = React.useState(valutes);
 
   const [valuteTitle, setValuteTitle] = React.useState('');
 
-  const addValute = () => {
-
-  }
+  const addValute = (event) => {
+    if (event.key === 'Enter') {
+      setValute([
+        ...valute,
+        {
+          id: Date.now(),
+          title: valuteTitle,
+          completed: false,
+        },
+      ]);
+    }
+  };
 
   return (
     <div className='home'>
       <div className='container'>
         <div className='home__content'>
-          <div className='home__search seacrh'>
-            <h1>Приложение добавления и удаления валют</h1>
-            <div className='input-field'>
+        <h1 className='form__title'>Приложение добавления и удаления валют</h1>
+          <div className='home__form form'>
+            <div>
+              <label className='form__label'>Имя валюты</label>
               <input
+                className='form__input'
                 type='text'
                 value={valuteTitle}
                 onChange={(event) => setValuteTitle(event.target.value)}
                 onKeyPress={addValute}
               />
-              <label>Имя валюты</label>
+            </div>
+            <div>
+              <label className='form__label'>Ценность Валюты</label>
+              <input
+                className='form__input'
+                type='text'
+                value={valuteTitle}
+                onChange={(event) => setValuteTitle(event.target.value)}
+                onKeyPress={addValute}
+              />
             </div>
           </div>
         </div>
