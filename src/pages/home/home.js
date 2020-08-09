@@ -10,24 +10,23 @@ function Home() {
   const [valuteTitle, setValuteTitle] = React.useState('');
 
   const addValute = (event) => {
-    if (event.key === 'Enter') {
-      setValute([
-        ...valute,
-        {
-          id: Date.now(),
-          title: valuteTitle,
-          completed: false,
-        },
-      ]);
-    }
+    event.preventDefault();
+    setValute([
+      ...valute,
+      {
+        id: Date.now(),
+        title: valuteTitle,
+        completed: false,
+      },
+    ]);
   };
 
   return (
     <div className='home'>
       <div className='container'>
         <div className='home__content'>
-        <h1 className='form__title'>Приложение добавления и удаления валют</h1>
-          <div className='home__form form'>
+          <h1 className='form__title'>Приложение добавления и удаления валют</h1>
+          <form onSubmit={addValute} className='home__form form'>
             <div>
               <label className='form__label'>Имя валюты</label>
               <input
@@ -38,22 +37,12 @@ function Home() {
                 onKeyPress={addValute}
               />
             </div>
-            <div>
-              <label className='form__label'>Ценность Валюты</label>
-              <input
-                className='form__input'
-                type='text'
-                value={valuteTitle}
-                onChange={(event) => setValuteTitle(event.target.value)}
-                onKeyPress={addValute}
-              />
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
   );
-}
+}//otkroi browser
 
 export default Home;
 
